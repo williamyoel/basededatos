@@ -1,28 +1,3 @@
-name: CI
-
-on:
-  push:
-    branches:
-      - master
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build and deploy
-        run: npm run build && npm run deploy
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,24 +9,27 @@ jobs:
   <canvas id="myChart" width="400" height="400"></canvas>
 
   <script>
-    const ctx = document.getElementById("myChart").getContext("2d");
+    document.addEventListener("DOMContentLoaded", function() {
+      const ctx = document.getElementById("myChart").getContext("2d");
 
-    const data = {
-      labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo"],
-      datasets: [{
-        label: "Ventas",
-        data: [10, 20, 30, 40, 50],
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(255, 99, 132, 1)"
-      }]
-    };
+      const data = {
+        labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo"],
+        datasets: [{
+          label: "Ventas",
+          data: [10, 20, 30, 40, 50],
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)"
+        }]
+      };
 
-    const myChart = new Chart(ctx, {
-      type: "bar",
-      data: data,
-      options: {}
+      const options = {};  // Puedes agregar opciones según sea necesario
+
+      const myChart = new Chart(ctx, {
+        type: "bar",
+        data: data,
+        options: options
+      });
     });
   </script>
 </body>
 </html>
-
